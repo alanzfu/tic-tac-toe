@@ -13,6 +13,7 @@ function initializeGame () {
   //Initialize Data
   window.xTurn = true;
   window.grid = [];
+  console.log(window.xTurn);
 
 
   //Initialize DOM
@@ -89,7 +90,7 @@ $(document).on('click', '.tile', function () {
 //Hover Behavior
 $(document).on('mouseenter', '.tile', function () {
   if(!$(this).hasClass('marked')) {
-    $(this).addClass('hover', 1000, 'swing');
+    $(this).addClass('hover');
     if (window.xTurn) {
       $(this).html('<div class="label">X</div>');
     } else {
