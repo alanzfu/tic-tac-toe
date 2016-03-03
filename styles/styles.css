@@ -1,3 +1,7 @@
+.body {
+  background-color: #666A73;
+}
+
 .container {
   width: 600px;
   margin: 0 auto;
@@ -14,18 +18,31 @@
   margin: 5px;
   text-align: center;
   position: relative;
+  cursor: pointer;
+  box-shadow: 0 1px 0 0 rgba(0,0,0,.1);
 }
 
 .label {
   position: absolute;
-  top: 25%;
-  left: 25%;
+  top: 50%;
+  left: 50%;
+  margin-left: -18%;
+  margin-top: -28%;
+}
+
+.hover {
+  background-color: rgba(0,0,0,0.8);
+  box-shadow: 0 2px 3px 0 rgba(0,0,0,.15);
+}
+
+.marked {
+  cursor: default;
 }
 
 .x {
-
+  background-color: blue;
 }
 
 .o {
-
+  background-color: yellow;
 }

@@ -6,7 +6,7 @@ $(document).ready(function () {
 function initializeGame () {
   var gridSize = prompt("How large of a tic tac toe game?", "3,4,5, etc...");
   gridSize = parseInt(gridSize);
-  while (gridSize === NaN) {
+  if (gridSize === NaN) {
     gridSize = prompt("Sorry that's an invalid input, please input a single number (e.g. 3, 4, 5, etc...)");
   }
 
@@ -27,7 +27,7 @@ function initializeGame () {
     window.grid.push([]);
     for (var j = 0; j < gridSize; j++) {
       var idString = i + "-" + j;
-      $('#'+i).append('<div class="tile" id="'+idString+'">-</div>');
+      $('#'+i).append('<div class="tile" id="'+idString+'"><div class="label"></div></div>');
       window.grid[i].push(0);
     }
   }
@@ -46,14 +46,18 @@ function initializeGame () {
 //Game Logic
 $(document).on('click', '.tile', function () {
   //Only go through game logic if tile has never been clicked before
-  if ($(this).text() === "-") {
+  if (!$(this).hasClass('marked')) {
+    $(this).addClass('marked');
     //Place X or O in DOM
     if (window.xTurn) {
+      $(this).html();
       $(this).html('<div class="label">X</div>');
-      $('.turn-title').text("O's turn");
+      $(this).removeClass('hover');
+      $(this).addClass('x');
     } else {
       $(this).html('<div class="label">O</div>');
-      $('.turn-title').text("X's turn");
+      $(this).removeClass('hover');
+      $(this).addClass('o');
     }
 
     //alter source of truth in data
@@ -81,6 +85,26 @@ $(document).on('click', '.tile', function () {
     window.xTurn = !window.xTurn;
   }
 });
+
+//Hover Behavior
+$(document).on('mouseenter', '.tile', function () {
+  if(!$(this).hasClass('marked')) {
+    $(this).addClass('hover', 1000, 'swing');
+    if (window.xTurn) {
+      $(this).html('<div class="label">X</div>');
+    } else {
+      $(this).html('<div class="label">O</div>');
+    }
+  }
+});
+
+$(document).on('mouseleave', '.tile', function () {
+  if(!$(this).hasClass('marked')) {
+    $(this).html('');
+  }
+  $(this).removeClass('hover');
+    //removeClass
+})
 
 $(document).on('click', '.restart', function () {
   //reinitialize the grid, reinitialie the dom, etc.
