@@ -1,5 +1,6 @@
-.body {
-  background-color: #666A73;
+body {
+  background-color: rgba(102, 106, 115, 0.1);
+  font-family: sans-serif;
 }
 
 .container {
@@ -24,10 +25,10 @@
 }
 
 .label {
+  text-align: center;
   position: absolute;
+  width: 100%;
   top: 50%;
-  left: 50%;
-  margin-left: -18%;
   margin-top: -28%;
 }
 
@@ -73,4 +74,50 @@
   background-color: #06425C;
   transition: background-color 0.2s;
   box-shadow: 0 2px 3px 0 rgba(0,0,0,0.25);
+}
+
+.overlay {
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  z-index: 3;
+}
+
+.modal {
+  position: relative;
+  top: 40%;
+  left: 50%;
+  width: 300px;
+  height: 200px;
+  margin-left: -150px;
+  margin-top: -100px;
+  z-index: 4;
+  background-color: #F2F2F2;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.winner-title {
+  padding-top: 40px;
+}
+
+.modal .restart {
+  margin-top: 10px;
+  font-size: 1em;
+}
+
+.close {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  border: none;
+  font-size: 1em;
+  cursor: pointer;
 }

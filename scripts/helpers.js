@@ -1,5 +1,22 @@
-var modalString = '<div class="modal"><button class="close">x</button><button class="restart">Restart?</button></div>'
+var modalString = [
+  '<div class="overlay">',
+    '<div class="modal">',
+      '<button class="close">X</button>',
+      '<button class="restart">Restart?</button>',
+    '</div>',
+  '</div>'
+].join('');
 
+
+var sanitize = function (string) {
+  var sanitizedInt = parseInt(string);
+  if (sanitizedInt > 30) {
+    sanitizedInt = 30;
+  } else if (sanitizedInt === NaN) {
+    sanitizedInt = 3;
+  };
+  return sanitizedInt;
+}
 
 //Checks for Win with a given grid, and row and column index (does not check entire grid, only most recently inputed);
 var checkWin = function (grid, row, col) {

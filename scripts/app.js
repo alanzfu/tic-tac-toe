@@ -4,22 +4,24 @@ $(document).ready(function () {
 
 
 function initializeGame () {
-  var gridSize = prompt("How large of a tic tac toe game?", "3,4,5, etc...");
-  gridSize = parseInt(gridSize);
+  var gridSize = prompt("How large of a tic tac toe game? Max 20", "3,4,5, etc...");
+  gridSize = sanitize(gridSize);
   if (gridSize === NaN) {
     gridSize = prompt("Sorry that's an invalid input, please input a single number (e.g. 3, 4, 5, etc...)");
   }
 
   //Initialize Data
   window.xTurn = true;
+  window.turnCount = 0;
   window.grid = [];
+  window.gameFinished = false;
   console.log(window.xTurn);
 
 
   //Initialize DOM
   var domGrid = $('.tic-grid');
   domGrid.html('');
-  $('.turn-title').text("X's turn");
+  $('.winner-title').remove();
 
 
   //Creates Source of Truth and DOM rendered version of Truth
@@ -32,8 +34,8 @@ function initializeGame () {
       window.grid[i].push(0);
     }
   }
-  var width = $('.container').width()/gridSize-10;
 
+  var width = $('.container').width()/gridSize-10;
   $('.tile').css({
     'width': width+'px',
     'height': width+'px',
@@ -67,19 +69,22 @@ $(document).on('click', '.tile', function () {
     var row = parseInt(id[0]);
     var col = parseInt(id[1]);
     window.grid[row][col] = window.xTurn;
+    window.turnCount++;
 
     //Check if there was a win
-    if(checkWin(window.grid, row, col)){
-      var playAgain;
+    if(checkWin(window.grid, row, col) && !gameFinished){
+      gameFinished = !gameFinished;
+      $('.overlay').show();
       if (window.xTurn) {
-        playAgain = confirm('X Won, Play Again?');
+        $('.modal').prepend('<h1 class="winner-title">X Won!</h1>');
       } else {
-        playAgain = confirm('O Won, Play Again?');
+        $('.modal').prepend('<h1 class="winner-title">O Won!</h1>');
       }
+    }
 
-      if (playAgain) {
-        initializeGame();
-      }
+    if (window.turnCount === window.grid.length*window.grid.length) {
+      $('.overlay').show();
+      $('.modal').prepend('<h1 class="winner-title">Tie Game!</h1>');
     }
 
     //Change Who's turn it is
@@ -110,4 +115,11 @@ $(document).on('mouseleave', '.tile', function () {
 $(document).on('click', '.restart', function () {
   //reinitialize the grid, reinitialie the dom, etc.
   initializeGame();
+})
+
+$(document).on('click', '.close', function () {
+  $('.overlay').hide();
+})
+$(document).on('click', '.overlay', function () {
+  $('.overlay').hide();
 })
