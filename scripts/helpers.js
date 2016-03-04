@@ -7,7 +7,6 @@ var modalString = [
   '</div>'
 ].join('');
 
-
 var sanitize = function (string) {
   var sanitizedInt = parseInt(string);
   if (sanitizedInt > 30) {
@@ -91,4 +90,11 @@ var checkDiagonal = function (grid) {
   } else {
     return false;
   }
+}
+
+module.exports = {
+  checkWin: checkWin,
+  checkRow: checkRow,
+  checkColumn: checkColumn,
+  checkDiagonal: checkDiagonal
 }

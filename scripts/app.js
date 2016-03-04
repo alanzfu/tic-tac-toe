@@ -82,7 +82,8 @@ $(document).on('click', '.tile', function () {
       }
     }
 
-    if (window.turnCount === window.grid.length*window.grid.length) {
+    if (window.turnCount === window.grid.length*window.grid.length && !gameFinished) {
+      $('.winner-title').remove();
       $('.overlay').show();
       $('.modal').prepend('<h1 class="winner-title">Tie Game!</h1>');
     }

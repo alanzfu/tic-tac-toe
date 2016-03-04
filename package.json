@@ -1,0 +1,16 @@
+{
+  "name": "eventbrite-tic-tac",
+  "version": "0.0.1",
+  "description": "tic tac toe",
+  "main": "scripts/helpers.js",
+  "repository": "",
+  "license": "Proprietary",
+  "private": true,
+  "scripts": {
+    "test": "node scripts/helpers.js & ./node_modules/.bin/mocha --bail specs/helperSpec.js; pkill -n node;"
+  },
+  "dependencies": {
+    "chai": "^1.9.0",
+    "mocha": "^1.17.1"
+  }
+}
