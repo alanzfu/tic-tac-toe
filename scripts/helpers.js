@@ -7,7 +7,7 @@ var modalString = [
   '</div>'
 ].join('');
 
-var sanitize = function (string) {
+function sanitize(string) {
   var sanitizedInt = parseInt(string);
   if (sanitizedInt > 30) {
     sanitizedInt = 30;
@@ -18,7 +18,7 @@ var sanitize = function (string) {
 }
 
 //Checks for Win with a given grid, and row and column index (does not check entire grid, only most recently inputed);
-var checkWin = function (grid, row, col) {
+function checkWin(grid, row, col) {
   if (checkRow(grid, row) || checkColumn(grid, col) || checkDiagonal(grid)) {
     return true;
   } else {
@@ -27,7 +27,7 @@ var checkWin = function (grid, row, col) {
 }
 
 //Checks single row of most recent input
-var checkRow = function (grid, index) {
+function checkRow(grid, index) {
   var xCount = 0;
   var oCount = 0;
 
@@ -46,7 +46,7 @@ var checkRow = function (grid, index) {
 }
 
 //Checks single column of most recent input
-var checkColumn = function (grid, index) {
+function checkColumn (grid, index) {
   var xCount = 0;
   var oCount = 0;
 
@@ -66,7 +66,7 @@ var checkColumn = function (grid, index) {
 
 
 //Checks y=x diagonal and y=-x diagonal
-var checkDiagonal = function (grid) {
+function checkDiagonal(grid) {
   var xCountRight = 0;
   var oCountRight = 0;
   var xCountLeft = 0;
